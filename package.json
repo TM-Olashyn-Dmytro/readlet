@@ -9,10 +9,11 @@
   "dependencies": {
     "airwaves": "^0.3.0",
     "classnames": "^2.2.3",
+    "dirg": "git@github.com:juliocesar/dirg.git",
+    "faker": "^3.1.0",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
-    "react-router": "2.0.1",
-    "dirg": "git@github.com:juliocesar/dirg.git"
+    "react-router": "2.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.3",
