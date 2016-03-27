@@ -7,9 +7,21 @@ import ArticlesGroup from '../articles-group'
 import faker from 'faker'
 
 let mockArticles = [
-  { title: faker.lorem.words(), text: faker.lorem.paragraphs() },
-  { title: faker.lorem.words(), text: faker.lorem.paragraphs() },
-  { title: faker.lorem.words(), text: faker.lorem.paragraphs() }
+  {
+    id: faker.random.number(),
+    title: faker.lorem.words(),
+    text: faker.lorem.paragraphs()
+  },
+  {
+    id: faker.random.number(),
+    title: faker.lorem.words(),
+    text: faker.lorem.paragraphs()
+  },
+  {
+    id: faker.random.number(),
+    title: faker.lorem.words(),
+    text: faker.lorem.paragraphs()
+  }
 ]
 
 export default class App extends React.Component {
