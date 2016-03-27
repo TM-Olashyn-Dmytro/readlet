@@ -1,0 +1,7 @@
+// SignupScreen styles
+// ===================
+
+.SignupScreen {
+  composes: Screen from '../screen/index.scss';
+  width: 100%;
+}

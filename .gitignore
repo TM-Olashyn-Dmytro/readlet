@@ -1,0 +1,9 @@
+node_modules
+dist
+.DS_Store
+*.log
+.sass-cache
+.ruby-version
+*.map
+*.db
+.env

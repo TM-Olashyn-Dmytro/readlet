@@ -1,0 +1,11 @@
+// Screen base styles
+// ==================
+
+@import 'themes/default';
+@import 'tools/grid';
+
+.Screen {
+  composes: Pane from '../pane/index.scss';
+  min-height: 100%;
+  padding: spacing(.5);
+}
