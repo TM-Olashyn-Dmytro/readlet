@@ -1,7 +1,15 @@
 // Articles group styles
 // =====================
 
+@import 'color';
+@import 'dirg';
+@import 'dirg-scales';
+
 .ArticlesGroup {
   display: flex;
   flex-flow: row nowrap;
+
+  >* + * {
+    margin-left: columns(1);
+  }
 }

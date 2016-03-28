@@ -5,10 +5,5 @@ html,
 body,
 .main-wrapper {
   height: 100%;
-}
-
-.main-wrapper {
-  position: relative;
-  overflow: auto;
-  background: #e6e6e6;
+  overflow: hidden;
 }

@@ -1,8 +1,17 @@
 // Root app wrapper styles
 // =======================
 
+@import 'dirg';
+@import 'dirg-scales';
+@import 'color';
+
 .App {
-  display: flex;
-  flex-flow: row nowrap;
-  min-height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: columns(1) columns(1);
+  overflow: auto;
+  background: color('first');
 }
