@@ -1,0 +1,10 @@
+// Dirg scales override
+// ====================
+
+$dirg-scales: (
+  default: (
+    font-size: 16px,
+    unit: 16px * 1.35,
+    factor: 1.25
+  )
+);
