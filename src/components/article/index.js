@@ -8,7 +8,7 @@ export default class Article extends React.Component {
   render() {
     return <article className={style.Article} key={this.props.article.id}>
       <header>
-        <h1>{this.props.article.title}</h1>
+        <h1 className={style.title}>{this.props.article.title}</h1>
         <div className={style.textWrapper}>
           {this.props.article.text}
         </div>
