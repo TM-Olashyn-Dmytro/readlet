@@ -1,12 +1,14 @@
-// Article component
-// =================
+// Sheet component
+// ===============
+//
+// Or “article view”. Too cool to call it that, though.
 
 import React from 'react'
 import style from './index.scss'
 
-export default class Article extends React.Component {
+export default class Sheet extends React.Component {
   render() {
-    return <article className={style.Article} key={this.props.article.id}>
+    return <article className={style.Sheet} key={this.props.article.id}>
       <header>
         <h1 className={style.title}>{this.props.article.title}</h1>
         <div className={style.textWrapper}>
@@ -17,12 +19,12 @@ export default class Article extends React.Component {
   }
 }
 
-Article.propTypes = {
+Sheet.propTypes = {
   id: React.PropTypes.number.isRequired,
   title: React.PropTypes.string,
   text: React.PropTypes.string
 }
 
-Article.defaultProps = {
+Sheet.defaultProps = {
   title: '[Untitled]'
 }
