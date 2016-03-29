@@ -20,11 +20,9 @@ export default class Sheet extends React.Component {
 }
 
 Sheet.propTypes = {
-  id: React.PropTypes.number.isRequired,
-  title: React.PropTypes.string,
-  text: React.PropTypes.string
+  article: React.PropTypes.object
 }
 
 Sheet.defaultProps = {
-  title: '[Untitled]'
+  article: { title: '[Untitled]' }
 }
