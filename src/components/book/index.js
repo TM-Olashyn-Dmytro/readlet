@@ -9,7 +9,7 @@ export default class Book extends React.Component {
   render() {
     return <div className={style.Book}>
       {this.props.articles.map(article => {
-        return <Sheet article={article} />
+        return <Sheet key={article.id} article={article} />
       })}
     </div>
   }
