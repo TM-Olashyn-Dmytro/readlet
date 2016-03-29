@@ -1,0 +1,68 @@
+// Main menu styles
+// ================
+
+@import 'dirg';
+@import 'dirg-scales';
+@import 'color';
+@import 'bezier-curve';
+
+.SearchForm {
+  transition: background .35s $bezier-curve;
+  position: fixed;
+  top: units(2);
+  left: units(2);
+  padding: units(.25);
+  overflow: visible;
+  background: transparent;
+
+  &:before {
+    transition: transform .35s $bezier-curve;
+    transform: scaleX(0);
+    transform-origin: center left;
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background: color('second');
+  }
+}
+
+.SearchFormExpanded {
+  composes: SearchForm;
+  transition-delay: .2s;
+  background: rgba(color('second'), .1);
+
+  &:before {
+    transform: scaleX(1);
+  }
+
+  .searchField {
+    opacity: .999;
+    pointer-events: auto;
+  }
+
+  .icon {
+    opacity: .5;
+  }
+}
+
+.icon {
+  @include font-size(1);
+  color: color('second');
+}
+
+.button + .button {
+  margin-left: units(1);
+}
+
+.searchField {
+  @include font-size(1);
+  transition: opacity .35s $bezier-curve;
+  width: columns(3);
+  margin-left: units(.5);
+  font-family: 'Source Sans Pro', sans-serif;
+  opacity: .001;
+  pointer-events: none;
+}
