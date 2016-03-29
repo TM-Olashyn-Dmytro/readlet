@@ -4,6 +4,7 @@
 import React from 'react'
 import style from './index.scss'
 import cx from 'classnames'
+import ResultsList from './results-list'
 
 export default class SearchForm extends React.Component {
   constructor(options = {}) {
@@ -17,22 +18,34 @@ export default class SearchForm extends React.Component {
   }
 
   render() {
-    let className = this.state.expanded ?
-      style.SearchFormExpanded :
-      style.SearchForm
+    let className
+    if (this.state.expanded && this.props.results.length) {
+      className = style.SearchFormExpandedWithResults
+    } else if (this.state.expanded) {
+      className = style.SearchFormExpanded
+    } else {
+      className = style.SearchForm
+    }
 
-    return <form className={className}>
-      <button
-        className={style.button}
-        type="button"
-        onClick={this.onClickToggleForm}>
-        <i className={`icon icon-search ${style.icon}`}  />
-      </button>
-      <input
-        className={style.searchField}
-        type="text"
-        ref="searchField"
-        placeholder="Wikipedia search" />
-    </form>
+    return <div className={className}>
+      <form className={style.form}>
+        <button
+          className={style.button}
+          type="button"
+          onClick={this.onClickToggleForm}>
+          <i className={`icon icon-search ${style.icon}`}  />
+        </button>
+        <input
+          className={style.searchField}
+          type="text"
+          ref="searchField"
+          placeholder="Wikipedia search" />
+      </form>
+      <ResultsList results={this.props.results} />
+    </div>
   }
+}
+
+SearchForm.propTypes = {
+  results: React.PropTypes.array.isRequired
 }

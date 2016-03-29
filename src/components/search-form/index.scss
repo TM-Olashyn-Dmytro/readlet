@@ -6,14 +6,14 @@
 @import 'color';
 @import 'bezier-curve';
 
+$results-appear-interval: .15s;
+$results-total: 10;
+
 .SearchForm {
-  transition: background .35s $bezier-curve;
   position: fixed;
   top: units(2);
   left: units(2);
-  padding: units(.25);
   overflow: visible;
-  background: transparent;
 
   &:before {
     transition: transform .35s $bezier-curve;
@@ -32,10 +32,13 @@
 .SearchFormExpanded {
   composes: SearchForm;
   transition-delay: .2s;
-  background: rgba(color('second'), .1);
 
   &:before {
     transform: scaleX(1);
+  }
+
+  .resultsList {
+    opacity: .999;
   }
 
   .searchField {
@@ -46,6 +49,35 @@
   .icon {
     opacity: .5;
   }
+
+  .form {
+    background: color('first', 1);
+  }
+
+  .resultsListEntry {
+    animation: drop 1s linear both;
+
+    @for $i from 1 through $results-total {
+      &:nth-child(#{$i}) {
+        animation-delay: #{($i - 1) * $results-appear-interval};
+      }
+    }
+  }
+}
+
+.SearchFormExpandedWithResults {
+  composes: SearchFormExpanded;
+
+  &:before {
+    content: none;
+  }
+}
+
+.form {
+  transition: background .35s $bezier-curve;
+  position: relative;
+  padding: units(.25);
+  background: transparent;
 }
 
 .icon {
@@ -59,10 +91,44 @@
 
 .searchField {
   @include font-size(1);
-  transition: opacity .35s $bezier-curve;
+  transition: opacity .35s .15s $bezier-curve;
   width: columns(3);
   margin-left: units(.5);
   font-family: 'Source Sans Pro', sans-serif;
   opacity: .001;
   pointer-events: none;
+}
+
+.resultsList {
+  transition: opacity .35s $bezier-curve;
+  overflow: hidden;
+  opacity: .001;
+}
+
+.resultsListEntry {
+  position: relative;
+  padding: units(.5) units(.25) units(.5) units(1.75);
+  background: color('second');
+  color: color('first');
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+@keyframes drop {
+  0% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -27, 0, 1); opacity: .001 }
+  2.6% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -16.027, 0, 1);}
+  5.21% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -2.9, 0, 1); }
+  7.81% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 6.13, 0, 1); }
+  10.41% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 9.01, 0, 1); }
+  13.41% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 6.473, 0, 1);  opacity: .999 }
+  16.32% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1.868, 0, 1); }
+  19.32% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -1.722, 0, 1); }
+  22.22% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -2.811, 0, 1); }
+  28.13% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -0.56, 0, 1); }
+  34.03% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0.877, 0, 1); }
+  45.75% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -0.274, 0, 1); }
+  57.56% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0.085, 0, 1); }
+  69.37% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -0.027, 0, 1); }
+  81.08% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0.008, 0, 1); }
+  92.89% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -0.003, 0, 1); }
+  100% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); opacity: .999; }
 }
