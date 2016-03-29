@@ -7,7 +7,7 @@ function randomParagraphCount() {
   return Math.random() * (13 - 3) + 3
 }
 
-function randomArticle() {
+export function randomArticle() {
   return {
     id: faker.random.number(),
     title: faker.lorem.words(),
