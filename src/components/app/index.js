@@ -10,7 +10,7 @@ import articles from '../articles'
 export default class App extends React.Component {
   render() {
     return <div className={style.App}>
-      <SearchForm />
+      <SearchForm results={articles} />
       <Book articles={articles} />
     </div>
   }
