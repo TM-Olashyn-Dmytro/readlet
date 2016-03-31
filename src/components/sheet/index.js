@@ -11,9 +11,9 @@ export default class Sheet extends React.Component {
     return <article className={style.Sheet} key={this.props.article.id}>
       <header>
         <h1 className={style.title}>{this.props.article.title}</h1>
-        <div className={style.textWrapper}>
-          {this.props.article.text}
-        </div>
+        <div
+          className={style.textWrapper}
+          dangerouslySetInnerHTML={{__html: this.props.article.text }} />
       </header>
     </article>
   }
