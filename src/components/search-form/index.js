@@ -5,7 +5,7 @@ import React from 'react'
 import style from './index.scss'
 import cx from 'classnames'
 import ResultsList from './results-list'
-import query from '../search'
+import EventBus from '../event-bus'
 
 export default class SearchForm extends React.Component {
   constructor(options = {}) {
@@ -21,7 +21,7 @@ export default class SearchForm extends React.Component {
 
   onSubmit(event) {
     event.preventDefault()
-    this.setState({ results: query() })
+    EventBus.broadcast('search:perform', this.refs.searchField.value)
   }
 
   render() {
@@ -48,7 +48,7 @@ export default class SearchForm extends React.Component {
           ref="searchField"
           placeholder="Wikipedia search" />
       </form>
-      <ResultsList results={this.state.results} />
+      <ResultsList />
     </div>
   }
 }
