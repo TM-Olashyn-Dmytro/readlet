@@ -28,11 +28,11 @@ if (env === 'development') {
   app.use(webpackHotMiddleWare(compiler))
 } else {
   app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'dist/index.html'))
+    res.sendFile(path.join(__dirname, 'build/index.html'))
   })
 }
 
-app.use(express.static(__dirname + '/dist'))
+app.use(express.static(path.join(__dirname, '/build')))
 
 app.listen(config._hotPort, 'localhost', (err) => {
   if (err) console.log(err)

@@ -5,18 +5,18 @@ import path from 'path'
 import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import dirg from 'dirg'
-import dotenv from 'dotenv'
-
-dotenv.load()
 
 module.exports = {
+  resolveLoader: {
+    root: path.join(__dirname, 'node_modules')
+  },
   devtool: 'eval',
   entry: [
     'webpack-hot-middleware/client',
     path.join(__dirname, 'src/boot.js')
   ],
   output: {
-    path: path.join(__dirname, '/dist/'),
+    path: path.join(__dirname, '/build/'),
     filename: '[name].js',
     publicPath: '/'
   },
@@ -35,6 +35,12 @@ module.exports = {
     })
   ],
   module: {
+    preLoaders: [
+      {
+        test: /\.js$/,
+        loader: 'eslint'
+      }
+    ],
     loaders: [
       {
         test: /(\.jsx|\.js)$/,
@@ -51,11 +57,11 @@ module.exports = {
       },
       {
         test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        exclude: /node_modules/,
         loader: 'file-loader'
       },
       {
         test: /\.scss$/,
-        exclude: /node_modules/,
         loader: [
           'style',
           [
@@ -73,9 +79,9 @@ module.exports = {
   ],
   sassLoader: {
     includePaths: [
-      dirg.includePaths,
-      path.resolve(__dirname, 'src/stylesheets')
-    ],
+      path.resolve(__dirname, 'src/stylesheets'),
+      dirg.includePaths
+    ]
   },
   _hotPort: 4567
 }

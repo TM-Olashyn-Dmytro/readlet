@@ -40,7 +40,6 @@
     "babel-preset-stage-2": "^6.5.0",
     "css-loader": "^0.23.1",
     "css-modules-require-hook": "^4.0.0",
-    "dotenv": "^2.0.0",
     "enzyme": "^2.3.0",
     "eslint": "^2.9.0",
     "eslint-config-defaults": "^9.0.0",

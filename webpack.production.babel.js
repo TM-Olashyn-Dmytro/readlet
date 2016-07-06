@@ -1,4 +1,4 @@
-// Webpack development config file
+// Webpack production config file
 // ===============================
 
 import path from 'path'
@@ -6,10 +6,7 @@ import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import StatsPlugin from 'stats-webpack-plugin'
-import styleguide from 'styleguide'
-import dotenv from 'dotenv'
-
-dotenv.load()
+import dirg from 'dirg'
 
 let CSSLoaders = [
   'css?importLoaders=1',
@@ -17,12 +14,15 @@ let CSSLoaders = [
 ].join('&')
 
 module.exports = {
+  resolveLoader: {
+    root: path.join(__dirname, 'node_modules')
+  },
   devtool: 'cheap-source-map',
   entry: [
     path.join(__dirname, 'src/boot.js')
   ],
   output: {
-    path: path.join(__dirname, '/dist/'),
+    path: path.join(__dirname, '/build/'),
     filename: '[name]-[hash].min.js'
   },
   plugins: [
@@ -73,8 +73,8 @@ module.exports = {
   },
   sassLoader: {
     includePaths: [
-      styleguide.includePaths,
-      path.resolve(__dirname, 'src/stylesheets')
+      path.resolve(__dirname, 'src/stylesheets'),
+      dirg.includePaths
     ]
   },
   postcss: [
