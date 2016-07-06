@@ -1,8 +1,18 @@
 // Global event bus
 // ================
 
-import { Channel } from 'airwaves'
+import Emitter from 'tiny-emitter'
 
-var EventBus = new Channel()
+const bus = new Emitter()
 
-export default EventBus
+export function on() {
+  return bus.on(...arguments)
+}
+
+export function off() {
+  return bus.off(...arguments)
+}
+
+export function emit() {
+  return bus.emit(...arguments)
+}

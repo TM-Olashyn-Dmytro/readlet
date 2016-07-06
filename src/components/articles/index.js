@@ -8,10 +8,10 @@ import {
   performSearch,
   searchResultsToArticles
 } from '../wikipedia-api'
-import EventBus from '../event-bus'
+import { on, emit } from '../event-bus'
 
-EventBus.subscribe('article:fetch', onFetchArticle)
-EventBus.subscribe('search:perform', onSearchPerform)
+on('article:fetch', onFetchArticle)
+on('search:perform', onSearchPerform)
 
 function onFetchArticle(name) {
   fetchArticle(name)
@@ -20,7 +20,7 @@ function onFetchArticle(name) {
 function onSearchPerform(query) {
   search(query, {
     success: (articles) => {
-      EventBus.broadcast('search:success', articles)
+      emit('search:success', articles)
     }
   })
 }
@@ -41,7 +41,7 @@ function fetchArticle(name) {
   fetchPage(name, {
     success: (response) => {
       articles.push(pageToArticle(response))
-      EventBus.broadcast('article:add', articles)
+      emit('article:add', articles)
     }
   })
 }
@@ -49,7 +49,7 @@ function fetchArticle(name) {
 function search(string) {
   performSearch(string, {
     success: (response) => {
-      EventBus.broadcast('search:success', searchResultsToArticles(response))
+      emit('search:success', searchResultsToArticles(response))
     }
   })
 }

@@ -34,7 +34,7 @@ if (env === 'development') {
 
 app.use(express.static(path.join(__dirname, '/build')))
 
-app.listen(config._hotPort, 'localhost', (err) => {
+app.listen(config._hotPort, 'localhost', err => {
   if (err) console.log(err)
   console.info(` ==> Listening on port ${config._hotPort}`)
 })

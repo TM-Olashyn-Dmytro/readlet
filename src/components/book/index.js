@@ -5,7 +5,7 @@ import React from 'react'
 import style from './index.scss'
 import Sheet from '../sheet'
 import articles from '../articles'
-import EventBus from '../event-bus'
+import { on } from '../event-bus'
 
 export default class Book extends React.Component {
   constructor(options = {}) {
@@ -14,7 +14,7 @@ export default class Book extends React.Component {
   }
 
   componentDidMount() {
-    EventBus.subscribe('article:add', () => {
+    on('article:add', () => {
       this.setState({ articles: articles })
     })
   }

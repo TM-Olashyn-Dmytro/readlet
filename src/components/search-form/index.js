@@ -3,9 +3,8 @@
 
 import React from 'react'
 import style from './index.scss'
-import cx from 'classnames'
 import ResultsList from './results-list'
-import EventBus from '../event-bus'
+import { emit } from '../event-bus'
 
 export default class SearchForm extends React.Component {
   constructor(options = {}) {
@@ -21,7 +20,7 @@ export default class SearchForm extends React.Component {
 
   onSubmit(event) {
     event.preventDefault()
-    EventBus.broadcast('search:perform', this.refs.searchField.value)
+    emit('search:perform', this.refs.searchField.value)
   }
 
   render() {
@@ -40,7 +39,7 @@ export default class SearchForm extends React.Component {
           className={style.button}
           type="button"
           onClick={this.onClickToggleForm}>
-          <i className={`icon icon-search ${style.icon}`}  />
+          <i className={`icon icon-search ${style.icon}`} />
         </button>
         <input
           className={style.searchField}

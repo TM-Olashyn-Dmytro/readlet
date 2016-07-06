@@ -3,7 +3,7 @@
 
 import React from 'react'
 import style from './index.scss'
-import EventBus from '../event-bus'
+import { on, emit } from '../event-bus'
 
 class ResultsListEntry extends React.Component {
   constructor(options = {}) {
@@ -12,7 +12,7 @@ class ResultsListEntry extends React.Component {
   }
 
   onClickEntry() {
-    EventBus.broadcast('article:fetch', this.props.result.title)
+    emit('article:fetch', this.props.result.title)
   }
 
   render() {
@@ -37,7 +37,7 @@ export default class ResultsList extends React.Component {
   }
 
   componentDidMount() {
-    EventBus.subscribe('search:success', (results) => {
+    on('search:success', results => {
       this.setState({ results: results })
     })
   }

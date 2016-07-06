@@ -13,7 +13,7 @@ export default class Sheet extends React.Component {
         <h1 className={style.title}>{this.props.article.title}</h1>
         <div
           className={style.textWrapper}
-          dangerouslySetInnerHTML={{__html: this.props.article.text }} />
+          dangerouslySetInnerHTML={{ __html: this.props.article.text }} />
       </header>
     </article>
   }
